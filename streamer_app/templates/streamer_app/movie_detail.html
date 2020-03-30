@@ -1,0 +1,33 @@
+{% extends 'streamer_app/base.html' %}
+
+{% block content %}
+    <div class="movie">
+        <h2>{{ movie.title}}<a class="btn btn-default" href = "{% url 'movie_edit' pk=movie.pk %}">Edit<span class="glyphicon glyphicon-pencil"></span></a></h2>
+		{% if movie.published_date %}
+            <div class="date">
+                {{ movie.published_date }}
+            </div>
+        {% endif %}
+        <p>{{ movie.text | linebreaksbr }}</p>
+		<p>Asked by: {{movie.author}}</p>
+    </div>
+	<br>
+	
+	<a class="btn btn-default" href = "{% url 'comment_new' pk=movie.pk %}">comment this movie <span class="glyphicon glyphicon-pencil"></span></a>	
+	<h3>{{comment_count}} comment(s):</h3>
+	<div class = "comments">
+		{% for comment in comments %}				
+			<p>{{ comment.text|linebreaksbr }}</p>
+			{% if comment.published_date %}
+				<div class="date">
+					{{ comment.published_date }}
+				</div>
+			{% endif %}
+			</p>
+			<span><a style="font-size:12px" class="btn btn-info btn-lg" href = "{% url 'comment_edit' pk=comment.pk %}">Edit<span class="glyphicon glyphicon-pencil"></span></a></span>
+			<p>commented by: {{comment.author}}</p>
+			<hr>
+			<br>
+		{% endfor %}
+	</div>	
+{% endblock %}

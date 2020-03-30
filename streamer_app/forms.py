@@ -7,6 +7,11 @@ class SignUpForm(forms.ModelForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
 
+class MovieForm(forms.ModelForm):
+    class Meta:
+        model = Movie
+        fields = '__all__'
+
 
 
 

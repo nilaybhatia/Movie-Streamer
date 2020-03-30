@@ -6,7 +6,7 @@ from django.utils import timezone
 class Movie(models.Model):
 	title = models.CharField(max_length=50)
 	url = models.URLField()
-	published_date = models.DateTimeField(default=timezone.now)
+	published_datetime = models.DateTimeField(blank=True, default=timezone.now)
 	def publish(self):
 		self.published_date = timezone.now()
 		self.save()
