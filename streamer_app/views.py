@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import *
 from django.utils import timezone
 from django.contrib.auth import login, logout
+from .models import Movie, Comment
+from .forms import *
 # Create your views here.
 
 def home(request):
@@ -21,4 +22,5 @@ def signup(request):
     return render(request, 'streamer_app/signup.html', {'form': form})
 
 def profile(request):
-    return render(request, 'streamer_app/profile.html')
+    movies = Movie.objects.all().order_by('-published_date')
+    return render(request, 'streamer_app/profile.html', {'movies' : movies})

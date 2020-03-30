@@ -2,8 +2,13 @@
 
 {% block content %}
     <h2>Welcome to your dashboard, {{ user.username }}</h2>
-    
+    <h4>Here are the list of all movies availaible for you</h4>
     <br> <br>
-    <a class="btn btn-default" href="{% url 'clear_figures' %}" class="top-menu">Clear figures for the month and mail them to me<span class="glyphicon glyphicon-envelope"></span></a>
+    {% for movie in movies %}
+    <iframe width="560" height="315" src="{{ movie.url }}" frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+    {% endfor %}
     <h5><a href="{% url 'logout' %}">Logout</a></h3>
 {% endblock %}
