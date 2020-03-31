@@ -1,7 +1,9 @@
 {% extends 'streamer_app/base.html' %}
 
 {% block content %}
+	<h3><a href="/accounts/profile">Back to all movies</a></h3>
     <div class="movie">
+		<h2>{{ movie.title }}</h2>
 		{% if movie.published_date %}
             <div class="date">
                 {{ movie.published_date }}

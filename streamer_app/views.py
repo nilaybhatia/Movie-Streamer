@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.admin.views.decorators import staff_member_required
 from django.utils import timezone
 from django.contrib.auth import login, logout
 from .models import Movie, Comment
@@ -28,7 +29,7 @@ def profile(request):
     movies = Movie.objects.all().order_by('-published_datetime')
     return render(request, 'streamer_app/profile.html', {'movies': movies})
 
-
+@staff_member_required
 def movie_new(request):
 	if request.method == "POST":
 		form = MovieForm(request.POST)

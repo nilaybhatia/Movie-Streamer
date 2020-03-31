@@ -1,6 +1,7 @@
 {% extends 'streamer_app/base.html' %}
 
 {% block content %}
+    <h1><a href="/accounts/profile">Back to all movies</a></h1>
     <h2>New movie</h2>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
