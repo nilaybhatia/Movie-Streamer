@@ -16,7 +16,10 @@
     </div>
 	<br>
 	
-	<a class="btn btn-default" href = "{% url 'comment_new' pk=movie.pk %}">comment on this movie <span class="glyphicon glyphicon-pencil"></span></a>	
+	<a class="btn btn-default" href = "{% url 'comment_new' pk=movie.pk %}">comment on this movie <span class="glyphicon glyphicon-pencil"></span></a>
+	{% if request.user.is_staff %}
+		<a class="btn btn-default" href = "{% url 'movie_edit' pk=movie.pk %}">Edit this movie <span class="glyphicon glyphicon-pencil"></span></a>	
+	{% endif %}
 	<h3>{{comment_count}} comment(s):</h3>
 	<div class = "comments">
 		{% for comment in comments %}				

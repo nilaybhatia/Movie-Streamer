@@ -13,6 +13,9 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
     </iframe>
+    <a class="btn btn-default" href = "{% url 'movie_delete' pk=movie.pk %}">Delete this movie 
+        <span class="glyphicon glyphicon-trash"></span>
+    </a>
     {% endfor %}
     <h5><a href="{% url 'logout' %}">Logout</a></h3>
 {% endblock %}

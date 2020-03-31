@@ -42,6 +42,25 @@ def movie_new(request):
 		form = MovieForm()
 	return render(request, 'streamer_app/movie_edit.html', {'form': form})
 
+@staff_member_required
+def movie_delete(request, pk):
+	movie = get_object_or_404(Movie, pk=pk).delete()
+	return redirect('profile')
+
+@staff_member_required
+def movie_edit(request, pk):
+    movie = get_object_or_404(Movie, pk = pk)
+    if request.method == "POST":
+        form = MovieForm(request.POST, instance=movie)
+        if form.is_valid():
+            movie = form.save(commit=False)
+            movie.published_date = timezone.now()
+            movie.save()
+            return redirect('movie_detail', pk = movie.pk)
+    else:
+        form = MovieForm(instance=movie)
+    return render(request, 'streamer_app/movie_edit.html', {'form': form})
+
 
 def movie_detail(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
