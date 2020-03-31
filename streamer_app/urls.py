@@ -7,4 +7,5 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('accounts/profile/movies/new', views.movie_new, name='movie_new'),
     path('accounts/profile/movie/<int:pk>', views.movie_detail, name='movie_detail'),
+    path('accounts/profile/movie/<int:pk>/comment/', views.comment_new, name='comment_new')
 ]

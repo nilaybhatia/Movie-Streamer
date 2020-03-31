@@ -2,18 +2,19 @@
 
 {% block content %}
     <div class="movie">
-        <h2>{{ movie.title}}<a class="btn btn-default" href = "{% url 'movie_edit' pk=movie.pk %}">Edit<span class="glyphicon glyphicon-pencil"></span></a></h2>
 		{% if movie.published_date %}
             <div class="date">
                 {{ movie.published_date }}
             </div>
         {% endif %}
-        <p>{{ movie.text | linebreaksbr }}</p>
-		<p>Asked by: {{movie.author}}</p>
+    <iframe width="560" height="315" src="{{ movie.url }}" frameborder="0" 
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
     </div>
 	<br>
 	
-	<a class="btn btn-default" href = "{% url 'comment_new' pk=movie.pk %}">comment this movie <span class="glyphicon glyphicon-pencil"></span></a>	
+	<a class="btn btn-default" href = "{% url 'comment_new' pk=movie.pk %}">comment on this movie <span class="glyphicon glyphicon-pencil"></span></a>	
 	<h3>{{comment_count}} comment(s):</h3>
 	<div class = "comments">
 		{% for comment in comments %}				
@@ -24,7 +25,6 @@
 				</div>
 			{% endif %}
 			</p>
-			<span><a style="font-size:12px" class="btn btn-info btn-lg" href = "{% url 'comment_edit' pk=comment.pk %}">Edit<span class="glyphicon glyphicon-pencil"></span></a></span>
 			<p>commented by: {{comment.author}}</p>
 			<hr>
 			<br>

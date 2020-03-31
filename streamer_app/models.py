@@ -16,7 +16,7 @@ class Movie(models.Model):
 class Comment(models.Model):
 	comment_on = models.ForeignKey(Movie, on_delete=models.CASCADE, default = None)
 	text = models.TextField()
-	published_date = models.DateTimeField(default=timezone.now)
+	published_datetime = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	def publish(self):
 		self.published_date = timezone.now()
