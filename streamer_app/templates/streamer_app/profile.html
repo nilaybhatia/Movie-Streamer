@@ -5,17 +5,20 @@
     {% if request.user.is_staff %}
     <a href="{% url 'movie_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>Add movie</a>
     {% endif %}
+    <h5><a href="{% url 'logout' %}">Logout</a></h3>
     <h4>Here are the list of all movies availaible for you</h4>
     <br> <br>
     {% for movie in movies %}
-    <h2><a href = "{% url 'movie_detail' pk=movie.pk %}">{{ movie.title }}</a></h2>
-    <iframe width="560" height="315" src="{{ movie.url }}" frameborder="0" 
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-    <a class="btn btn-default" href = "{% url 'movie_delete' pk=movie.pk %}">Delete this movie 
-        <span class="glyphicon glyphicon-trash"></span>
-    </a>
+        <h2><a href = "{% url 'movie_detail' pk=movie.pk %}">{{ movie.title }}</a></h2>
+        <iframe width="560" height="315" src="{{ movie.url }}" frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+        {% if request.user.is_staff %}
+            <a class="btn btn-default" href = "{% url 'movie_delete' pk=movie.pk %}">Delete this movie 
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        {% endif %}
     {% endfor %}
     <h5><a href="{% url 'logout' %}">Logout</a></h3>
 {% endblock %}
